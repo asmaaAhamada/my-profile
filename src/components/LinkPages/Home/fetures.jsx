@@ -1,92 +1,119 @@
-import React from "react";
-import { Box, Grid, Paper, Typography } from "@mui/material";
-import {
-  LockOutlined,
-  VerifiedUserOutlined,
-  BusinessCenterOutlined,
-  SupportAgentOutlined,
-} from "@mui/icons-material";
+import React, { useState, useEffect, useRef } from "react";
+import { Box, Grid, Paper, Typography, Button } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import { Link } from "react-router-dom";
+import { projectsData } from "../../projectsData";
+import { useInViewAnimation } from "../../useInViewAnimation";
 
-const features = [
-  {
-    icon: <LockOutlined fontSize="large" />,
-    title: "Säker & Trygg",
-    description:
-      "Din säkerhet är vår högsta prioritet. All data är krypterad och vi följer strikta säkerhetsstandarder.",
-  },
-  {
-    icon: <VerifiedUserOutlined fontSize="large" />,
-    title: "KYC-Verifiering",
-    description:
-      "Alla användare genomgår noggrann identitetskontroll för maximal trygghet.",
-  },
-  {
-    icon: <BusinessCenterOutlined fontSize="large" />,
-    title: "Verifierade Projekt",
-    description:
-      "Varje projekt granskas noggrant innan publicering för att säkerställa kvalitet.",
-  },
-  {
-    icon: <SupportAgentOutlined fontSize="large" />,
-    title: "Professionell Support",
-    description:
-      "Vårt team finns här för att hjälpa dig genom hela investeringsprocessen.",
-  },
-];
 
+
+
+
+
+
+// كارد مستقل
+const Card = ({ feature }) => {
+    const [ref, inView] = useInViewAnimation({ threshold: 0.2 });
+
+  const theme = useTheme();
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const intervalRef = useRef(null); // لتجنب مشاكل strict mode
+
+  useEffect(() => {
+    intervalRef.current = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % feature.images.length);
+    }, 2100);
+
+    return () => clearInterval(intervalRef.current);
+  }, [feature.images.length]);
+
+  return (
+    <Box
+      ref={ref}
+      sx={{
+        opacity: inView ? 1 : 0,
+        transform: inView ? "translateY(0px)" : "translateY(50px)",
+        transition: "all 0.8s ease-out",
+      }}
+    >
+    <Paper
+      elevation={3}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        textAlign: "center",
+        gap: 2,
+        p: 2,
+        borderRadius: 3,
+        transition: "0.3s",
+        "&:hover": {
+          transform: "translateY(-5px)",
+          boxShadow: 10,
+        },
+      }}
+    >
+      <Box
+        component="img"
+        src={feature.images[currentImageIndex]}
+        alt={feature.title}
+        sx={{
+          width: "100%",
+          height: 200,
+          objectFit: "contain",
+          borderRadius: 2,
+          transition: "opacity 0.5s ease-in-out", // fade animation
+        }}
+      />
+      <Typography variant="h6" fontWeight={700} sx={{             color: theme.palette.text.primary,
+ }}>
+        {feature.title}
+      </Typography>
+      {feature.description && (
+        <Typography variant="body2" sx={{ color: theme.palette.text.secondary }}>
+          {feature.description}
+        </Typography>
+      )}
+      <Button
+  component={Link}
+  to={`/projects/${feature.id}`}
+  variant="contained"
+  sx={{
+    mt: 1,
+    textTransform: "none",
+    backgroundColor: theme.navbar.hover,
+    color: theme.palette.primary.main,
+     "&:hover": {
+color:'white'   ,width:'100%'     },
+  }}
+>
+  View Details
+</Button>
+    </Paper>
+   </Box>
+  );
+};
+
+// الصفحة الرئيسية للكاردات
 const CardPage = () => {
   const theme = useTheme();
 
   return (
-    <Box
-      sx={{
-        py: 6,
-        px: 3,
-        backgroundColor: theme.palette.background.default,
-        color: theme.palette.text.primary,
-      }}
-    >
-      <Grid container spacing={4}>
-        {features.map((item, index) => (
-          <Grid item xs={12} md={6} key={index}>
-            <Paper
-              elevation={3}
-              sx={{
-                p: 3,
-                display: "flex",
-                flexDirection: "column",
-                gap: 1.5,
-                textAlign: "left",
-                backgroundColor: theme.palette.background.paper,
-                borderRadius: 3,
-                transition: "0.3s",
-                "&:hover": {
-                  transform: "translateY(-5px)",
-                  boxShadow: 10,
-                },
-              }}
-            >
-              <Box
-                sx={{
-                  color: theme.palette.primary.main,
-                }}
-              >
-                {item.icon}
-              </Box>
+    <>
+     <Box sx={{ py: 6, px: 3, backgroundColor: theme.palette.background.paper }}>
+      <Grid container spacing={3}>
+       {projectsData.map((project) => (
+  <Grid item key={project.id} xs={12} sm={6} md={4}>
+    <Card feature={project} />
+  </Grid>
+))}
 
-              <Typography variant="h6" fontWeight={700} sx={{color:theme.navbar.Text}}>
-                {item.title}
-              </Typography>
-
-              <Typography variant="body2" sx={{color: theme.navbar.span}}>
-                {item.description}
-              </Typography>
-            </Paper>
-          </Grid>
-        ))}
       </Grid>
     </Box>
+
+    </>
+   
+    
   );
 };
 

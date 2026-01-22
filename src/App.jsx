@@ -1,15 +1,13 @@
 import React from 'react'
 import { Routes, Route, Link } from 'react-router-dom'
 import Layout from './components/layout/layout'
-import HomePage from './components/LinkPages/Home/homePage'
-import AboutPage from './components/LinkPages/AboutPage'
-import LoginPage from './components/auth/loginPage'
-import SighnPage from './components/auth/regester/sighnPage'
+
 import WelcomPage from './components/LinkPages/Home/welcomPage'
-import Projects_Page from './components/page.jsx/projects/projectsPage'
-import CreateProject from './components/page.jsx/projects/creatProjects'
-import ProjectDetail from './components/page.jsx/projects/ProjectDetail'
-import ProfileOrgnationPage from './components/page.jsx/orgnation/ProfileOrgnationPage'
+
+import ConectPage from './components/ConectPage'
+import ProjectDetailsPage from './components/ProjectDetailsPage'
+import RedoAt from './components/LinkPages/Home/redo'
+import CardPage from './components/LinkPages/Home/fetures'
 
 
 export default function App({toggleMode, mode}){
@@ -17,9 +15,7 @@ export default function App({toggleMode, mode}){
     <>
      
        <Routes>
-        {/* <Route path="/*" element={<NotFound />} /> */}
 
-  {/* <Route path="/" element={<Login />} /> */}
     {/* <Route path="/login" element={<Login />} />
     <Route path="/google/callback" element={<Login_Google />} /> */}
 
@@ -28,15 +24,13 @@ export default function App({toggleMode, mode}){
       {/* <Route element={<ProtectedRoute />}> */}
         <Route path="/" element={<Layout toggleMode={toggleMode} mode={mode}/>}>
 <Route index element={<WelcomPage />} />
-    <Route path="/hemsida" element={<WelcomPage />} />
+    <Route path="/Public" element={<WelcomPage />} />
 
-    <Route path="/Om" element={<AboutPage />} />
-    <Route path="/Logga_in" element={<LoginPage />} />
-    <Route path="/Skapa_konto" element={<SighnPage />} />
-        <Route path="/projects" element={<Projects_Page />} />
-<Route path="/create-project" element={<CreateProject />} />
-<Route path="/projects/:id" element={<ProjectDetail />} />
-<Route path="/profileOrgnastion" element={<ProfileOrgnationPage />} />
+    <Route path="/Skills" element={<RedoAt />} />
+<Route path="/projects/:id" element={<ProjectDetailsPage />} />
+      <Route path="/projects" element={<CardPage />} />
+
+        <Route path="/conect" element={<ConectPage />} />
 
 
 </Route>

@@ -27,14 +27,9 @@ import CottageIcon from '@mui/icons-material/Cottage';
 
 
 const drawerWidth = 240;
-const navItems = ['Hemsida', 'Om','Logga_in','Skapa_konto'];
+const navItems = ['Public', 'Skills','Projects','Conect'];
 
-const iconsMap = {
-  Hemsida: <CottageIcon fontSize='small' />,
-  Om: <SpaceDashboardIcon fontSize='small' />,
-  Logga_in: <CallMissedIcon fontSize='small'/>,
-  Skapa_konto: <CallMissedIcon fontSize='small'/>,
-};
+
 
 function DrawerAppBar(props) {
   const { window, toggleMode, mode } = props;
@@ -45,11 +40,16 @@ function DrawerAppBar(props) {
   const handleDrawerToggle = () => {
     setMobileOpen(prev => !prev);
   };
-
+const iconsMap = {
+  Public: <CottageIcon fontSize='small' sx={{color: theme.navbar.border}} />,
+  Skills: <SpaceDashboardIcon fontSize='small' sx={{color: theme.navbar.border}} />,
+  Projects: <CallMissedIcon fontSize='small'sx={{color: theme.navbar.border}}/>,
+  Conect: <CallMissedIcon fontSize='small'sx={{color: theme.navbar.border}}/>,
+};
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', bgcolor: theme.palette.background.default, height: '100%' }}>
       <Typography variant="h6" sx={{ my: 2, color: theme.navbar.border }}>
-        Investera i Sverige
+       welcom in my World
       </Typography>
       <IconButton color="inherit" onClick={toggleMode} sx={{ mb: 2 }}>
         {mode === 'light' ? <Brightness4Icon /> : <Brightness7Icon />}
@@ -92,17 +92,16 @@ function DrawerAppBar(props) {
       <AppBar component="nav" position="fixed" sx={{zIndex: (theme) => theme.zIndex.drawer + 1, bgcolor: theme.palette.background.paper, color: theme.palette.text.primary }}>
         <Toolbar>
           <IconButton
-            color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
+            sx={{ mr: 2, display: { sm: 'none' } ,color: theme.navbar.border}}
           >
             <MenuIcon />
           </IconButton>
           <CallMissedIcon fontSize="large" sx={{color: theme.navbar.border}}/>
           <Typography variant="h6" component="div" sx={{ color: theme.navbar.border,flexGrow: 1, display: { xs: 'none', sm: 'block' } }}>
-            Investera i Sverige
+       welcom in my World
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'flex' }, alignItems: 'center' }}>
             {navItems.map((item) => {

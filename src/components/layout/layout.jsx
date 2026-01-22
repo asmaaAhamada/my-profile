@@ -5,9 +5,9 @@ import SidPar from "./sidBar";
 export default function Layout({ toggleMode, mode }){
     return(
         <>
-        <SidPar/>
+        {/* <SidPar/> */}
       <DrawerAppBar toggleMode={toggleMode} mode={mode}  />
-   
+   <Outlet/>
     </>
     )
 }

@@ -37,12 +37,14 @@ const Card = ({ feature }) => {
       }}
     >
     <Paper
+    
       elevation={3}
       sx={{
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        textAlign: "center",
+        textAlign: "center",        backgroundColor:'black',
+
         gap: 2,
         p: 2,
         borderRadius: 3,
@@ -65,7 +67,7 @@ const Card = ({ feature }) => {
           transition: "opacity 0.5s ease-in-out", // fade animation
         }}
       />
-      <Typography variant="h6" fontWeight={700} sx={{             color: theme.palette.text.primary,
+      <Typography variant="h6" fontWeight={700} sx={{           color: theme.navbar.border
  }}>
         {feature.title}
       </Typography>
@@ -100,7 +102,8 @@ const CardPage = () => {
 
   return (
     <>
-     <Box sx={{ py: 6, px: 3, backgroundColor: theme.palette.background.paper }}>
+     <Box sx={{ py: 6, px: 3,         backgroundColor:'#121212',
+ }}>
       <Grid container spacing={3}>
        {projectsData.map((project) => (
   <Grid item key={project.id} xs={12} sm={6} md={4}>

@@ -38,7 +38,7 @@ const StatsSection = () => {
     <Box
       sx={{
         py: 6,
-        backgroundColor: theme.palette.background.paper,
+        backgroundColor:'#121212',
       }}
     >
       <Grid container spacing={4}>
@@ -68,7 +68,7 @@ const StatsSection = () => {
                 variant="body2"
                 sx={{
                   mt: 1,
-                  color: theme.palette.text.secondary,
+                  color: 'white',
                 }}
               >
                 {item.label}

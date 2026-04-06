@@ -19,13 +19,16 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { useTheme } from '@mui/material/styles';
 import { Link, useLocation } from 'react-router-dom';
-
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 //icons
 import SpaceDashboardIcon from '@mui/icons-material/SpaceDashboard';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import CottageIcon from '@mui/icons-material/Cottage';
 
-
+import CallIcon from '@mui/icons-material/Call';
+import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
+import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
+import PublicIcon from '@mui/icons-material/Public';
 const drawerWidth = 240;
 const navItems = ['Public', 'Skills','Projects','Conect'];
 
@@ -41,16 +44,15 @@ function DrawerAppBar(props) {
     setMobileOpen(prev => !prev);
   };
 const iconsMap = {
-  Public: <CottageIcon fontSize='small' sx={{color: theme.navbar.border}} />,
-  Skills: <SpaceDashboardIcon fontSize='small' sx={{color: theme.navbar.border}} />,
-  Projects: <CallMissedIcon fontSize='small'sx={{color: theme.navbar.border}}/>,
-  Conect: <CallMissedIcon fontSize='small'sx={{color: theme.navbar.border}}/>,
+  Public: <PublicIcon fontSize='small' sx={{fontSize:'25px' ,color: '#c319d2ff'}} />,
+  Skills: <PlaylistAddIcon fontSize='small' sx={{fontSize:'35px' ,color: '#c319d2ff'}} />,
+  Projects: <BusinessCenterIcon fontSize='small'sx={{fontSize:'25px',color: '#c319d2ff'}}/>,
+  Conect: <CallIcon fontSize='small'sx={{fontSize:'25px' ,color: '#c319d2ff'}}/>,
 };
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', bgcolor: theme.palette.background.default, height: '100%' }}>
-      <Typography variant="h6" sx={{ my: 2, color: theme.navbar.border }}>
-       welcom in my World
-      </Typography>
+      <Typography variant="h5" sx={{ my: 2, color: theme.navbar.border }}>
+Asmaa Alhamada      </Typography>
       <IconButton color="inherit" onClick={toggleMode} sx={{ mb: 2 }}>
         {mode === 'light' ? <Brightness4Icon /> : <Brightness7Icon />}
       </IconButton>
@@ -68,7 +70,7 @@ const iconsMap = {
                 sx={{
                     gap:2,
                   bgcolor: isActive ? theme.palette.action.selected : 'transparent',
-                  color: isActive ? theme.palette.primary.contrastText : theme.palette.text.primary,
+                  color: isActive ? theme.navbar.border : 'white',
                   '&:hover': {
                     bgcolor: theme.palette.action.hover,
                   },
@@ -89,9 +91,8 @@ const iconsMap = {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar component="nav" position="fixed" sx={{zIndex: (theme) => theme.zIndex.drawer + 1, bgcolor: theme.palette.background.paper, color: theme.palette.text.primary }}>
-        <Toolbar>
-          <IconButton
+      <AppBar component="nav" position="fixed"elevation={0} sx={{zIndex: (theme) => theme.zIndex.drawer + 1, bgcolor: '#000000', color: theme.palette.text.primary }}>
+<Toolbar sx={{ position: 'relative' }}>          <IconButton
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
@@ -99,39 +100,73 @@ const iconsMap = {
           >
             <MenuIcon />
           </IconButton>
-          <CallMissedIcon fontSize="large" sx={{color: theme.navbar.border}}/>
-          <Typography variant="h6" component="div" sx={{ color: theme.navbar.border,flexGrow: 1, display: { xs: 'none', sm: 'block' } }}>
-       welcom in my World
-          </Typography>
-          <Box sx={{ display: { xs: 'none', sm: 'flex' }, alignItems: 'center' }}>
-            {navItems.map((item) => {
+          <Typography variant="h5" component="div" sx={{ color: theme.navbar.border,flexGrow: 1, display: { xs: 'none', sm: 'block' } }}>
+Asmaa Alhamada           </Typography>
+<Box
+  sx={{
+    display: { xs: 'none', sm: 'flex' },
+    alignItems: 'center',
+    position: 'absolute',
+    left: '50%',
+    transform: 'translateX(-50%)',
+  }}
+>            {navItems.map((item) => {
               const href = `/${item.toLowerCase()}`;
               const isActive = location.pathname === href;
 
               return (
-                <Button
-                  component={Link}
+               <Button
+  component={Link}
   to={href}
-                  key={item}
-                  sx={{
-                     gap:1,
-                    color: isActive ? theme.palette.primary.main : theme.palette.text.primary,
-                    bgcolor: isActive ? theme.palette.action.selected : 'transparent',
-                    '&:hover': {
-                      bgcolor: theme.palette.action.hover,
-                    },
-                    ml: 1,
-                  }}
-                >
-                  {iconsMap[item]}
-                  {item}
-                </Button>
+  key={item}
+  sx={{
+    gap: 1,
+ bgcolor: isActive ? theme.palette.action.selected : 'transparent',
+                  color: isActive ? theme.navbar.border : 'white',    borderBottom: isActive
+      ? `2px solid ${theme.palette.primary.main1}`
+      : '2px solid transparent',
+    borderRadius: 0,
+    '&:hover': {
+      bgcolor: 'transparent',
+      borderBottom: `2px solid ${theme.palette.primary.main}`,
+    },
+    ml: 1,
+  }}
+>
+  {iconsMap[item]}
+  {item}
+</Button>
               );
             })}
-            <IconButton color="inherit" onClick={toggleMode} sx={{ ml: 2 }}>
-              {mode === 'light' ? <Brightness4Icon /> : <Brightness7Icon />}
-            </IconButton>
+           
           </Box>
+
+
+        <Typography
+  onClick={toggleMode}
+  sx={{
+    position: 'absolute',
+    right: 16,
+    cursor: 'pointer',
+    fontWeight: 'bold',
+    fontSize: '24px',
+    background: 'linear-gradient(90deg, #ffffff, #c319d2)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    textShadow: '0 0 8px rgba(195, 25, 210, 0.6)',
+    transition: '0.3s',
+    '&:hover': {
+      textShadow: '0 0 14px rgba(255, 255, 255, 0.9), 0 0 20px rgba(195, 25, 210, 0.8)',
+      transform: 'scale(1.05)',
+    },
+  }}
+>
+  Portfolio
+</Typography>
+
+
+
+
         </Toolbar>
       </AppBar>
 

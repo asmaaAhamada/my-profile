@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+  
 import {
   Box,
   Card,
@@ -7,7 +8,8 @@ import {
   useTheme,
 } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-
+import CodeOffIcon from '@mui/icons-material/CodeOff';
+import ReadMoreFeature from "./ReadMoreFeature";
 export default function ProjectDetails({ project }) {
   const theme = useTheme();
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -23,58 +25,9 @@ export default function ProjectDetails({ project }) {
   }, [project.images.length]);
 
   return (
-    <Card sx={{ mt: 2, p: 2 }}>
+    <Card sx={{ backgroundColor :'#121212' ,mt: 2, p: 2 }}>
       <Grid container spacing={2}>
-        {/* TEXT SIDE */}
-        <Grid
-          item
-          xs={12}
-          md={6}
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            gap: 2,
-          }}
-        >
-          <Typography variant="h4" fontWeight="700" mb={3}>
-            {project.title}
-          </Typography>
-
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-            {project.features.map((item, index) => (
-              <Box
-                key={index}
-                sx={{ display: "flex", alignItems: "center", gap: 1.5 }}
-              >
-                <CheckCircleIcon
-                  sx={{ color: theme.palette.success.main, fontSize: 22 }}
-                />
-                <Typography sx={{ color: theme.palette.text.secondary }}>
-                  {item}
-                </Typography>
-              </Box>
-            ))}
-          </Box>
-        </Grid>
-
-        {/* IMAGE SIDE */}
-        <Grid item xs={12} md={6}>
-          <Box
-            component="img"
-            src={project.images[0]}
-            alt={project.title}
-            sx={{
-              width: "100%",
-              height: 300,
-              objectFit: "contain",
-              borderRadius: 2,
-            }}
-          />
-        </Grid>
-      </Grid>
-
-      {/* 👇 الشريط المتحرك تحت كامل البوكس */}
+          {/* 👇 الشريط المتحرك تحت كامل البوكس */}
       <Box
         sx={{
           mt: 3,
@@ -110,6 +63,57 @@ export default function ProjectDetails({ project }) {
           ))}
         </Box>
       </Box>
+        {/* TEXT SIDE */}
+        <Grid
+          item
+          xs={12}
+          md={6}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            gap: 2,
+          }}
+        >
+          <Typography variant="h4" fontWeight="700" mb={3} color='#c319d2ff'>
+            <CodeOffIcon sx={{ fontSize: 32 ,mr:4}}/>
+            {project.title}
+          </Typography>
+
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+     {project.features.map((item, index) => (
+              <Box
+                key={index}
+                sx={{ display: "flex", alignItems: "center", gap: 1.5 }}
+              >
+                <CheckCircleIcon
+                  sx={{ color: 'green', fontSize: 22 }}
+                />
+                <Typography sx={{ color: 'white' }}>
+                  {item}
+                </Typography>
+              </Box>
+            ))}
+          </Box>
+        </Grid>
+
+        {/* IMAGE SIDE */}
+        <Grid item xs={12} md={6}>
+          <Box
+            component="img"
+            src={project.images[0]}
+            alt={project.title}
+            sx={{
+              width: "100%",
+              height: 300,
+              objectFit: "contain",
+              borderRadius: 2,
+            }}
+          />
+        </Grid>
+      </Grid>
+
+    
     </Card>
   );
 }

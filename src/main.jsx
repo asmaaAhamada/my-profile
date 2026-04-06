@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
+import { HashRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material'
 import App from './App'
@@ -14,11 +14,15 @@ function Main() {
     palette: {
   mode,
   primary: {
+        main1: mode === 'light' ? 'rgb(245, 244, 245)' : '#c911eeff', // أزرق رئيسي لللايت، أزرق فاتح للدارك
+
     main: mode === 'light' ? '#a105b6ff' : '#c911eeff', // أزرق رئيسي لللايت، أزرق فاتح للدارك
     contrastText:mode === 'light' ?'#ffffffff' : '#000000', // لون النص على الأزرار
   },
   background: {
-    default: mode === 'light' ? '#e59df380' : '#000000', // الأبيض لللايت، الأسود للدارك
+        default1: mode === 'light' ? '#000000' : '#000000', // الأبيض لللايت، الأسود للدارك
+
+    default: mode === 'light' ? '#000000' : '#000000', // الأبيض لللايت، الأسود للدارك
     paper: mode === 'light' ? '#ffffff' : '#121212',   // البطاقات
   },
   text: {
@@ -67,9 +71,9 @@ button:mode === 'light' ? '#ffffff' : '#9819d2ff',
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
+      <HashRouter>
         <Main />
-      </BrowserRouter>
+      </HashRouter>
     </Provider>
   </React.StrictMode>
 )

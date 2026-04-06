@@ -69,25 +69,26 @@ export default function ConectPage() {
     <>
       <Card
         sx={{
-          backgroundColor: theme.palette.background.default,
           mt: 2,
-          borderRadius: "24px",
+          backgroundColor: "#121212",
+          borderRadius: "20px",
         }}
       >
         <CardContent>
-          <Typography variant="h5" fontWeight="600" mb={1}>
+          <Typography variant="h4" fontWeight="600" mb={1} color="purple">
             Contact Me
           </Typography>
+
           <Typography
-            variant="body2"
-            sx={{ color: theme.navbar?.icon || "text.secondary" }}
+            variant="h6"
+            sx={{ color: "#f7f1f1" }}
             mb={3}
           >
-            Let’s connect and build something great 🚀
+            Let’s connect and build something great 
           </Typography>
 
           <Grid container spacing={3}>
-            {contacts.map((item) => (
+            {contacts.map((item, index) => (
               <Grid item xs={6} sm={4} md={2} key={item.label}>
                 <Box
                   onClick={() =>
@@ -103,11 +104,17 @@ export default function ConectPage() {
                     gap: 1,
                     p: 2,
                     borderRadius: "18px",
+                    color: "white",
+
+                    // ✨ دخول تدريجي
+                    opacity: 0,
+                    transform: "translateY(25px)",
+                    animation: "fadeUp 0.6s ease forwards",
+                    animationDelay: `${index * 0.1}s`,
+
                     transition: "0.3s",
-                    "&:hover": {
-                      backgroundColor: theme.palette.action.hover,
-                      transform: "translateY(-6px)",
-                    },
+
+                   
                   }}
                 >
                   <IconButton
@@ -116,9 +123,9 @@ export default function ConectPage() {
                       color: "#fff",
                       width: 56,
                       height: 56,
-                      "&:hover": {
-                        bgcolor: item.color,
-                      },
+                      transition: "0.3s",
+
+                     
                     }}
                   >
                     {item.icon}
@@ -143,13 +150,26 @@ export default function ConectPage() {
         </CardContent>
       </Card>
 
-      {/* Snackbar */}
       <Snackbar
         open={open}
         autoHideDuration={2000}
         onClose={() => setOpen(false)}
         message="Email copied to clipboard 📋"
       />
+
+      {/* animation */}
+      <style>{`
+        @keyframes fadeUp {
+          from {
+            opacity: 0;
+            transform: translateY(25px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </>
   );
 }

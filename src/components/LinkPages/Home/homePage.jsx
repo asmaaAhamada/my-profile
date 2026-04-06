@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Box, Typography, Button, useTheme } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import { Link } from "react-router-dom";
-import r1 from "../../../assets/image/1766358205513.png";
+import r1 from "../../../assets/image/image.png";
 
-/* ===== Typing Animation (Loop) ===== */
+/* Typing Effect */
 const TypingText = ({
   text,
-  typingSpeed = 120,
-  deletingSpeed = 80,
+  typingSpeed = 80,
+  deletingSpeed = 50,
   delay = 1500,
 }) => {
   const [displayedText, setDisplayedText] = useState("");
@@ -23,155 +23,140 @@ const TypingText = ({
         setIndex((prev) => prev + 1);
       }, typingSpeed);
     } else if (!isDeleting && index === text.length) {
-      timeout = setTimeout(() => {
-        setIsDeleting(true);
-      }, delay);
+      timeout = setTimeout(() => setIsDeleting(true), delay);
     } else if (isDeleting && index > 0) {
       timeout = setTimeout(() => {
         setDisplayedText((prev) => prev.slice(0, -1));
         setIndex((prev) => prev - 1);
       }, deletingSpeed);
-    } else if (isDeleting && index === 0) {
+    } else {
       setIsDeleting(false);
     }
 
     return () => clearTimeout(timeout);
-  }, [index, isDeleting, text, typingSpeed, deletingSpeed, delay]);
+  }, [index, isDeleting, text]);
 
   return <span>{displayedText}</span>;
 };
 
 export default function HelloPage() {
-  const theme = useTheme();
-
   return (
     <Box
       sx={{
-        backgroundColor: theme.palette.background.default,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        flexWrap: "wrap",
-        px: { xs: 2, md: 8 },
-        py: { xs: 4, md: 8 },
-        minHeight: "70vh",
+        position: "relative",
+        height: { xs: "350px", md: "550px" },
+        overflow: "hidden",
       }}
     >
-      {/* النص */}
+      {/* الصورة */}
+      <img
+        src={r1}
+        alt="Asmaa"
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+        }}
+      />
+
+      {/* Overlay content */}
       <Box
         sx={{
-          flex: { xs: "1 1 100%", md: "1 1 45%" },
-          textAlign: { xs: "center", md: "left" },
+          position: "absolute",
+          inset: 0,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: { xs: "flex-end", md: "center" },
+          alignItems: { xs: "center", md: "flex-end" },
+          px: { xs: 2, md: 30 },
+          pb: { xs: 5, md: 0 },
+          textAlign: { xs: "center", md: "right" },
+          zIndex: 2,
         }}
       >
+        {/* Name */}
         <Typography
-          variant="h3"
+          variant="h4"
           sx={{
-            color: theme.palette.primary.main,
+            color: "white",
             mb: 2,
             fontWeight: 700,
+            opacity: 0,
+            animation: "fadeUp 1s ease forwards",
           }}
         >
-          Hello 👋
+          Asmaa Alhamada
         </Typography>
 
+        {/* Job title */}
+        <Typography
+          variant="h6"
+          sx={{
+            color: "#c319d2",
+            fontWeight: 700,
+            mb: 2,
+            borderRight: { xs: "none", md: "2px solid #c319d2" },
+            pr: { md: "6px" },
+            opacity: 0,
+            animation: "fadeUp 1s ease forwards",
+            animationDelay: "0.3s",
+          }}
+        >
+          <TypingText text="Web Developer" />
+        </Typography>
+
+        {/* Description */}
         <Typography
           variant="body1"
           sx={{
             mb: 3,
             fontSize: "1.1rem",
-            color: theme.palette.text.secondary,
+            color: "#ddd",
+            maxWidth: "400px",
           }}
         >
-          Welcome to my digital world,
-          <br />
-          I’m Asmaa Al-Hamada, a passionate web developer crafting modern and
-          elegant web solutions.
+          Hello, I am Asmaa, passionate about building websites and developing
+          smart solutions
           <br />
           <br />
           Where creativity meets technology.
         </Typography>
 
-        {/* الاسم + Web Developer أنيميشن */}
-        <Typography
-          variant="h5"
-          sx={{
-            mb: 4,
-            fontWeight: 600,
-            color: theme.palette.text.primary,
-          }}
-        >
-          Asmaa Al-Hamada |{" "}
-          <Typography
-            component="span"
-            sx={{
-              color: theme.palette.primary.main,
-              fontWeight: 700,
-              borderRight: "2px solid",
-              pr: "6px",
-              animation: "blink 1s infinite",
-            }}
-          >
-            <TypingText text="Web Developer" />
-          </Typography>
-        </Typography>
-
+        {/* Button */}
         <Link to="/conect" style={{ textDecoration: "none" }}>
           <Button
             variant="contained"
-            color="primary"
-            size="large"
             sx={{
-                        fontSize:"18px"
-,
+              backgroundColor: "#c319d2",
+              color: "#fff",
+              fontSize: "18px",
               borderRadius: 2,
               textTransform: "none",
               px: 4,
               py: 1.2,
+              zIndex: 2,
+              "&:hover": {
+                backgroundColor: "#a315b0",
+              },
             }}
           >
-conect Me          </Button>
+            Contact Me
+          </Button>
         </Link>
       </Box>
 
-      {/* الصورة */}
-      <Box
-        sx={{
-          flex: { xs: "1 1 100%", md: "1 1 45%" },
-          display: "flex",
-          justifyContent: { xs: "center", md: "flex-end" },
-          mt: { xs: 4, md: 0 },
-        }}
-      >
-     <img
-  src={r1}
-  alt="Asmaa"
-  style={{
-    width: "320px",
-    animation: "float 4s ease-in-out infinite",
-  }}
-/>
-
-<style>
-{`
-@keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-  100% { transform: translateY(0); }
-}
-`}
-</style>
-
-
-      </Box>
-
-      {/* Cursor animation */}
+      {/* Animations */}
       <style>
         {`
-          @keyframes blink {
-            0% { border-color: transparent; }
-            50% { border-color: currentColor; }
-            100% { border-color: transparent; }
+          @keyframes fadeUp {
+            0% {
+              opacity: 0;
+              transform: translateY(20px);
+            }
+            100% {
+              opacity: 1;
+              transform: translateY(0);
+            }
           }
         `}
       </style>

@@ -39,7 +39,8 @@ export default function WelcomPage() {
           transition: "all 0.8s ease-out",
         }}
       >
-        <QuesPage />
+                <CardPage />
+
       </div>
 
       <div
@@ -50,7 +51,7 @@ export default function WelcomPage() {
           transition: "all 0.8s ease-out",
         }}
       >
-        <CardPage />
+        <RedoAt />
       </div>
 
       <div
@@ -61,7 +62,8 @@ export default function WelcomPage() {
           transition: "all 0.8s ease-out",
         }}
       >
-        <RedoAt />
+                <QuesPage />
+
       </div>
 
       <div

@@ -38,12 +38,14 @@ const StatsSection = () => {
     <Box
       sx={{
         py: 6,
-        backgroundColor:'#121212',
+        px: 2, // 👈 يمنع الخروج برا الشاشة
+        backgroundColor: "#121212",
+        overflowX: "hidden", // 👈 يمنع السكرول يمين
       }}
     >
-      <Grid container spacing={4}>
+      <Grid container spacing={2} justifyContent="center">
         {items.map((item, index) => (
-          <Grid item xs={6} md={3} key={index}>
+          <Grid item xs={6} sm={6} md={3} key={index}>
             <Box
               sx={{
                 textAlign: "center",
@@ -68,7 +70,8 @@ const StatsSection = () => {
                 variant="body2"
                 sx={{
                   mt: 1,
-                  color: 'white',
+                  color: "white",
+                  fontSize: { xs: "14px", sm: "16px" }, // 👈 تحسين للموبايل
                 }}
               >
                 {item.label}

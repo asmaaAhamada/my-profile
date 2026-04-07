@@ -44,11 +44,11 @@ export default function HelloPage() {
     <Box
       sx={{
         position: "relative",
-        height: { xs: "350px", md: "550px" },
+        height: { xs: "auto", md: "550px" }, // 👈 مهم
         overflow: "hidden",
       }}
     >
-      {/* الصورة */}
+      {/* Image */}
       <img
         src={r1}
         alt="Asmaa"
@@ -59,19 +59,20 @@ export default function HelloPage() {
         }}
       />
 
-      {/* Overlay content */}
+      {/* Content */}
       <Box
         sx={{
-          position: "absolute",
+          position: { xs: "static", md: "absolute" }, // 👈 الحل الأساسي
           inset: 0,
           display: "flex",
           flexDirection: "column",
-          justifyContent: { xs: "flex-end", md: "center" },
+          justifyContent: "center",
           alignItems: { xs: "center", md: "flex-end" },
           px: { xs: 2, md: 30 },
-          pb: { xs: 5, md: 0 },
+          py: { xs: 4, md: 0 },
           textAlign: { xs: "center", md: "right" },
           zIndex: 2,
+          backgroundColor: { xs: "#111", md: "transparent" }, // للموبايل
         }}
       >
         {/* Name */}
@@ -88,7 +89,7 @@ export default function HelloPage() {
           Asmaa Alhamada
         </Typography>
 
-        {/* Job title */}
+        {/* Job */}
         <Typography
           variant="h6"
           sx={{
@@ -112,7 +113,7 @@ export default function HelloPage() {
             mb: 3,
             fontSize: "1.1rem",
             color: "#ddd",
-            maxWidth: "400px",
+            maxWidth: "350px",
           }}
         >
           Hello, I am Asmaa, passionate about building websites and developing
@@ -134,7 +135,6 @@ export default function HelloPage() {
               textTransform: "none",
               px: 4,
               py: 1.2,
-              zIndex: 2,
               "&:hover": {
                 backgroundColor: "#a315b0",
               },

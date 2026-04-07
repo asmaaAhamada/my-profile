@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-  
+import React from "react";
 import {
   Box,
   Card,
@@ -8,112 +7,118 @@ import {
   useTheme,
 } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import CodeOffIcon from '@mui/icons-material/CodeOff';
-import ReadMoreFeature from "./ReadMoreFeature";
+import CodeOffIcon from "@mui/icons-material/CodeOff";
+
 export default function ProjectDetails({ project }) {
   const theme = useTheme();
-  const [scrollPosition, setScrollPosition] = useState(0);
-
-  // سرعة الحركة
-  const speed = 1; // pixels per frame
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setScrollPosition(prev => (prev + speed) % (project.images.length * 100));
-    }, 16); // ~60fps
-    return () => clearInterval(interval);
-  }, [project.images.length]);
 
   return (
-    <Card sx={{ backgroundColor :'#121212' ,mt: 2, p: 2 }}>
-      <Grid container spacing={2}>
-          {/* 👇 الشريط المتحرك تحت كامل البوكس */}
-      <Box
-        sx={{
-          mt: 3,
-          overflow: "hidden",
-          width: "100%",
-          borderTop: `1px solid ${theme.palette.divider}`,
-          borderBottom: `1px solid ${theme.palette.divider}`,
-          py: 1,
-          position: "relative",
-        }}
-      >
-        <Box
-          sx={{
-            display: "flex",
-            gap: 2,
-            transform: `translateX(-${scrollPosition}px)`,
-            transition: "transform 0.1s linear",
-          }}
+    <Card sx={{ backgroundColor: "#121212", mt: 4, p: 4 }}>
+      {/* 🔥 TITLE */}
+      <Box textAlign="center" mb={4}>
+        <Typography
+          variant="h3"
+          fontWeight="700"
+          color="#c319d2ff"
+          gutterBottom
         >
-          {project.images.concat(project.images).map((img, idx) => (
+          <CodeOffIcon sx={{ fontSize: 40, mr: 2 }} />
+          {project.title}
+        </Typography>
+      </Box>
+
+    {/* 🔥 PROJECT OVERVIEW */}
+<Box textAlign="center" mb={6} maxWidth="800px" mx="auto">
+  
+ 
+
+  {/* الوصف الرئيسي */}
+  <Typography
+    variant="h6"
+    sx={{
+      color: "rgba(255,255,255,0.85)",
+      mt: 2,
+      lineHeight: 1.8,
+      fontWeight: 400,
+    }}
+  >
+ {project.des}
+  </Typography>
+
+</Box>
+<br/>
+      {/* 🔥 MAIN IMAGE */}
+      <Box mb={5}>
+        <Box
+          component="img"
+          src={project.images[0]}
+          alt={project.title}
+          sx={{
+            width: "100%",
+            maxHeight: 450,
+            objectFit: "contain",
+            borderRadius: 3,
+          }}
+        />
+      </Box>
+
+      {/* 🔥 IMAGES GRID بدل السلايدر */}
+      <Grid container spacing={2}>
+        {project.images.map((img, index) => (
+          <Grid item xs={6} sm={4} md={3} key={index}>
             <Box
-              key={idx}
               component="img"
               src={img}
-              alt={`${project.title} screenshot ${idx}`}
+              alt={`screenshot ${index}`}
               sx={{
-                width: 120,
-                height: 80,
+                width: "100%",
+                height: 140,
                 objectFit: "cover",
-                borderRadius: 1,
+                borderRadius: 2,
+                cursor: "pointer",
+                transition: "0.3s",
+                "&:hover": {
+                  transform: "scale(1.05)",
+                },
               }}
             />
-          ))}
-        </Box>
-      </Box>
-        {/* TEXT SIDE */}
-        <Grid
-          item
-          xs={12}
-          md={6}
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            gap: 2,
-          }}
+          </Grid>
+        ))}
+        
+      </Grid>
+      <br/>
+       {/* 🔥 FEATURES */}
+      <Box mb={5}>
+        <Box textAlign="center" mb={4}>
+        <Typography
+          variant="h3"
+          fontWeight="700"
+          color="#c319d2ff"
+          gutterBottom
         >
-          <Typography variant="h4" fontWeight="700" mb={3} color='#c319d2ff'>
-            <CodeOffIcon sx={{ fontSize: 32 ,mr:4}}/>
-            {project.title}
-          </Typography>
-
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-     {project.features.map((item, index) => (
+          <CodeOffIcon sx={{ fontSize: 40, mr: 2 }} />
+          Features:
+        </Typography>
+      </Box>
+        <Grid container spacing={2}>
+          {project.features.map((item, index) => (
+            <Grid item xs={12} md={6} key={index}>
               <Box
-                key={index}
-                sx={{ display: "flex", alignItems: "center", gap: 1.5 }}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 1.5,
+                }}
               >
-                <CheckCircleIcon
-                  sx={{ color: 'green', fontSize: 22 }}
-                />
-                <Typography sx={{ color: 'white' }}>
+                <CheckCircleIcon sx={{ color: "green" }} />
+                <Typography sx={{ color: "white" }}>
                   {item}
                 </Typography>
               </Box>
-            ))}
-          </Box>
+            </Grid>
+          ))}
         </Grid>
-
-        {/* IMAGE SIDE */}
-        <Grid item xs={12} md={6}>
-          <Box
-            component="img"
-            src={project.images[0]}
-            alt={project.title}
-            sx={{
-              width: "100%",
-              height: 300,
-              objectFit: "contain",
-              borderRadius: 2,
-            }}
-          />
-        </Grid>
-      </Grid>
-
-    
+      </Box>
     </Card>
   );
 }

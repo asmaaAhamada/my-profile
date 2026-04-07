@@ -1,28 +1,54 @@
 import board1 from "../assets/ss/Screenshot 2026-01-11 012422.png";
 import board2 from "../assets/ss/Dashboard.png";
+import boar2 from "../assets/ss/image.png";
+import boar12 from "../assets/ss/photo_2026-01-09_03-45-17.jpg";
+import boar22 from "../assets/ss/1.png";
+import boar222 from "../assets/ss/12.png";
 
 // استيراد الصور لكل كارد
-import board11 from "../assets/ss/إضافة موظف.png";
-import board3 from "../assets/ss/الامتحانات علامات الاطباء.png";
-import board4 from "../assets/ss/البريد الخارجي صادر.png";
-import board5 from "../assets/ss/الأرشيف.png";
-import board6 from "../assets/ss/البريد داخلي صادر.png";
+import board11 from "../assets/ss/11.png";
+import board3 from "../assets/ss/3.png";
+import board4 from "../assets/ss/222.png";
+import board5 from "../assets/ss/33.png";
+import board6 from "../assets/ss/4.png";
+import board61 from "../assets/ss/5.png";
+import board62 from "../assets/ss/6.png";
+import board63 from "../assets/ss/66.png";
+import board64 from "../assets/ss/65.png";
+
 import board7 from "../assets/ss/photo_2026-01-09_03-45-17.jpg";
 
-import a1 from "../assets/salati/photo_2026-01-09_04-06-47.jpg";
+
+
+
+
+
+
+
+
+
+import a1 from "../assets/salati/photo_2026-04-08_01-02-49.jpg";
+import a12 from "../assets/salati/photo_2026-04-08_01-02-26.jpg";
+
 import a2 from "../assets/salati/photo_2026-01-09_04-06-28.jpg";
-import a3 from "../assets/salati/photo_2026-01-09_04-07-01.jpg";
+import a3 from "../assets/salati/photo_2026-04-08_01-02-38.jpg";
+import a33 from "../assets/salati/photo_2026-04-08_01-02-33.jpg";
+
 import a4 from "../assets/salati/photo_2026-01-09_04-06-56.jpg";
 import a5 from "../assets/salati/photo_2026-01-09_04-06-52.jpg";
 import a6 from "../assets/salati/photo_2026-01-09_04-06-41.jpg";
 import a7 from "../assets/salati/photo_2026-01-09_04-06-37.jpg";
 import a8 from "../assets/salati/photo_2026-01-09_04-06-32.jpg";
-import a9 from "../assets/salati/photo_2026-01-09_04-06-28.jpg";
+import a9 from "../assets/salati/photo_2026-04-08_01-02-59.jpg";
+import a11 from "../assets/salati/photo_2026-01-09_04-06-47.jpg";
 
 
 import b1 from "../assets/compain/2222.jpg";
 import b2 from "../assets/compain/photo_2026-01-09_03-38-37.jpg";
-import b3 from "../assets/compain/photo_2026-01-09_03-38-37.jpg";
+import b3 from "../assets/compain/image.png";
+import b44 from "../assets/compain/photo_2026-01-12_01-33-31.jpg";
+import b444 from "../assets/compain/photo_2026-01-12_01-33-54.jpg";
+
 import b4 from "../assets/compain/photo_2026-01-09_03-38-47.jpg";
 import b5 from "../assets/compain/photo_2026-01-12_01-33-45.jpg";
 import b6 from "../assets/compain/ل.jpg";
@@ -34,7 +60,6 @@ import b64 from "../assets/compain/photo_2026-01-12_01-34-08.jpg";
 import b65 from "../assets/compain/photo_2026-01-12_01-34-04.jpg";
 import b66 from "../assets/compain/photo_2026-01-12_01-33-50.jpg";
 import b67 from "../assets/compain/photo_2026-01-12_01-33-59.jpg";
-import b68 from "../assets/compain/photo_2026-01-12_01-33-54.jpg";
 
 
 
@@ -64,8 +89,9 @@ import weather2 from "../assets/halab/photo_2026-01-09_03-50-43.jpg";
 export const projectsData = [
   {
     id: "syrian-board",
-    title: "The Syrian Board",
-    images: [board1,board11, board2,board1,board3,board4,board5,board6,board7],
+    title: "The Syrian Board",des: ` Comprehensive digital transformation from paper-based workflows to a fully integrated system  
+,Built advanced RBAC system with 17 hierarchical roles and fine-grained permission control `,
+    images: [board1,board11, board2,board3,board4,board5,board6,board63,boar12,boar22,boar222,board61,board62,board62,board64],
     features: [
       "Comprehensive digital transformation from paper-based workflows to a fully integrated system",
       "Advanced role-based access control with 17 hierarchical roles and fine-grained permissions",
@@ -87,7 +113,11 @@ export const projectsData = [
   {
     id: "salati",
     title: "Salati",
-    images: [a1, a2, a3, a4, a5,a6,a7,a8],
+   des: `A location-based Islamic app that provides accurate prayer times,
+Qibla direction, and personalized settings with secure authentication.
+It also includes rich spiritual features like Athkar, audio duas,
+Tasbeeh tracking, and real-time notifications.`,
+    images: [a1, a2, a3,a12 ,a33, a4, a5,a6,a7,a8,a9,a11],
     features: [
       "Secure authentication with email/password and Google sign-in",
       "Accurate prayer time display based on the user's current location",
@@ -107,8 +137,12 @@ export const projectsData = [
 
   {
     id: "complaints",
-    title: "Complaints Management System",
-    images: [b1, b2, b3, b4, b5, b6,b61,b62,b63,b64,b65,b67,b66,b68,b7 ],
+    title: "Complaints Management System",des: ` End-to-end complaint system with centralized dashboard, assignment, real-time status tracking, and live 
+updates. , End-to-end complaint system with centralized dashboard, assignment, real-time status tracking, and live 
+updates. 
+Powerful analytics and reporting with advanced search/filtering and in-app notifications for workflow 
+updates.`,
+    images: [b1, b2, b3, b4,b44,b444, b5, b6,b61,b62,b63,b64,b65,b67,b66,b7 ],
     features: [
       "Role-based access with distinct Admin and Employee permissions",
       "Government entities management with full create, update, and delete capabilities",
@@ -125,7 +159,9 @@ export const projectsData = [
   {
     id: "glowpink",
     title: "GlowPink Delivery App",
-    images: [b18,b11, b12, b13, b14, b15, b16,b17,b18 ],
+    images: [b18,b11, b12, b13, b14, b15, b16,b17 ],des: `Dual-role system (User/Admin) with full delivery and order management capabilities across the platform.  Real-time tracking and order lifecycle management, including location tracking and delivery workflow 
+from confirmation to completion. 
+Secure payment integration with Stripe, plus push notifications for live order and delivery updates. `,
     features: [
       "Dual-role system with User and Admin access levels",
       "Complete delivery management system for orders and shipments",
@@ -142,7 +178,8 @@ export const projectsData = [
   {
     id: "todo",
     title: "Todo List App",
-    images: [todo1, todo2, todo3],
+    images: [todo1, todo2, todo3],des: `Mark tasks as completed or pending,
+      Organize tasks into categories for better management`,
     features: [
       "Create, edit, and delete tasks with ease",
       "Mark tasks as completed or pending",
@@ -157,7 +194,10 @@ export const projectsData = [
   {
     id: "aleppo-weather",
     title: "Aleppo Weather App",
-    images: [weather1, weather2],
+    images: [weather1, weather2],des: ` Real-time weather app for Aleppo displaying current, minimum, and maximum temperatures with live 
+API integration. 
+Multilingual support (English/Arabic) with instant switching and fully localized date/time formatting. 
+ Enhanced user experience with localized time display and dynamic weather descriptions for accurate `,
     features: [
       "Real-time weather data for Aleppo with current, min, and max temperatures",
       "Displays weather description with corresponding icon for clarity",

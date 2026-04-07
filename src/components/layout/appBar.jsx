@@ -53,10 +53,9 @@ const iconsMap = {
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', bgcolor: theme.palette.background.default, height: '100%' }}>
       <Typography variant="h5" sx={{ my: 2, color: theme.navbar.border }}>
 Asmaa Alhamada      </Typography>
-      <IconButton color="inherit" onClick={toggleMode} sx={{ mb: 2 }}>
-        {mode === 'light' ? <Brightness4Icon /> : <Brightness7Icon />}
-      </IconButton>
-      <Divider />
+     
+<Typography variant="h5" sx={{ my: 2, color: theme.navbar.border }}>
+Asmaa Alhamada      </Typography>    <Divider />
       <List>
         {navItems.map((item) => {
           const href = `/${item.toLowerCase()}`;
@@ -142,28 +141,33 @@ Asmaa Alhamada           </Typography>
           </Box>
 
 
-        <Typography
+      <Typography
   onClick={toggleMode}
   sx={{
     position: 'absolute',
     right: 16,
     cursor: 'pointer',
     fontWeight: 'bold',
-    fontSize: '24px',
+    
+    fontSize: { xs: '16px', sm: '24px' }, // 👈 تصغير على الموبايل
+    whiteSpace: 'nowrap', // 👈 يمنع النزول سطر جديد
+    
+    display: { xs: 'none', sm: 'block' }, // 👈 إخفاء على الموبايل (أفضل حل)
+
     background: 'linear-gradient(90deg, #ffffff, #c319d2)',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
     textShadow: '0 0 8px rgba(195, 25, 210, 0.6)',
     transition: '0.3s',
     '&:hover': {
-      textShadow: '0 0 14px rgba(255, 255, 255, 0.9), 0 0 20px rgba(195, 25, 210, 0.8)',
+      textShadow:
+        '0 0 14px rgba(255, 255, 255, 0.9), 0 0 20px rgba(195, 25, 210, 0.8)',
       transform: 'scale(1.05)',
     },
   }}
 >
-  Portfolio
+  Front-End
 </Typography>
-
 
 
 

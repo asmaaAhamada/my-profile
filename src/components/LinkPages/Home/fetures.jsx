@@ -86,7 +86,7 @@ const Card = ({ feature }) => {
     backgroundColor: theme.navbar.hover,
     color: theme.palette.primary.main,
      "&:hover": {
-color:'white'   ,width:'100%'     },
+color:'white'       },
   }}
 >
   View Details
@@ -102,7 +102,7 @@ const CardPage = () => {
 
   return (
     <>
-     <Box sx={{ py: 6, px: 3,         backgroundColor:'#121212',
+    <Box sx={{ py: 6, px: { xs: 1, sm: 3 } ,overflowX: "hidden",        backgroundColor:'#121212',
  }}>
       <Grid container spacing={3}>
        {projectsData.map((project) => (

@@ -89,6 +89,8 @@ import weather2 from "../assets/halab/photo_2026-01-09_03-50-43.jpg";
 export const projectsData = [
   {
     id: "syrian-board",
+            demoLink: "https://drive.google.com/drive/folders/1Qme0Xx_f5GNUk7fbD6sPGrnlXwg67Cv6?usp=sharing",
+
     title: "The Syrian Board",des: ` Comprehensive digital transformation from paper-based workflows to a fully integrated system  
 ,Built advanced RBAC system with 17 hierarchical roles and fine-grained permission control `,
     images: [board1,board11, board2,board3,board4,board5,board6,board63,boar12,boar22,boar222,board61,board62,board62,board64],
@@ -113,6 +115,8 @@ export const projectsData = [
   {
     id: "salati",
     title: "Salati",
+            demoLink: "https://drive.google.com/file/d/1ZeMav3sVvlg-R81bhrri-JXSE5apfOXM/view?usp=drivesdk",
+
    des: `A location-based Islamic app that provides accurate prayer times,
 Qibla direction, and personalized settings with secure authentication.
 It also includes rich spiritual features like Athkar, audio duas,
@@ -137,6 +141,8 @@ Tasbeeh tracking, and real-time notifications.`,
 
   {
     id: "complaints",
+        demoLink: "https://drive.google.com/file/d/1DEK7_iEk0qwnsWq1rH_G1RyOS_uSzWHy/view?usp=sharing",
+
     title: "Complaints Management System",des: ` End-to-end complaint system with centralized dashboard, assignment, real-time status tracking, and live 
 updates. , End-to-end complaint system with centralized dashboard, assignment, real-time status tracking, and live 
 updates. 

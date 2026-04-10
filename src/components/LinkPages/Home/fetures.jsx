@@ -91,6 +91,37 @@ color:'white'       },
 >
   View Details
 </Button>
+{feature.demoLink ? (
+  <Button
+    component="a"
+    href={feature.demoLink}
+    target="_blank"
+    rel="noopener noreferrer"
+    variant="contained"
+    sx={{
+      mt: 1,
+      textTransform: "none",
+      backgroundColor: theme.navbar.hover,
+      color: theme.palette.primary.main,
+      "&:hover": {
+        color: "white",
+      },
+    }}
+  >
+    View Demo
+  </Button>
+) : (
+  <Typography
+    sx={{
+      mt: 1,
+      color: "gray",
+      fontSize: "0.9rem",
+      fontStyle: "italic",
+    }}
+  >
+  
+  </Typography>
+)}
     </Paper>
    </Box>
   );

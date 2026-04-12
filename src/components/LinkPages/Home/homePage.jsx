@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Box, Typography, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import r1 from "../../../assets/image/image.png";
+import DownloadIcon from "@mui/icons-material/Download";
 
+import cvFile from "../../../assets/todo/FRONT-END.pdf"
 /* Typing Effect */
 const TypingText = ({
   text,
@@ -123,26 +125,64 @@ export default function HelloPage() {
           Where creativity meets technology.
         </Typography>
 
-        {/* Button */}
-        <Link to="/conect" style={{ textDecoration: "none" }}>
-          <Button
-            variant="contained"
-            sx={{
-              backgroundColor: "#c319d2",
-              color: "#fff",
-              fontSize: "18px",
-              borderRadius: 2,
-              textTransform: "none",
-              px: 4,
-              py: 1.2,
-              "&:hover": {
-                backgroundColor: "#a315b0",
-              },
-            }}
-          >
-            Contact Me
-          </Button>
-        </Link>
+       {/* Buttons */}
+<Box
+  sx={{
+    display: "flex",
+    flexDirection: { xs: "column", md: "row" }, // 👈 عمود بالموبايل، صف باللابتوب
+    gap: 2,
+    mt: 2,
+  }}
+>
+  {/* Contact Button */}
+  <Link to="/conect" style={{ textDecoration: "none" }}>
+    <Button
+      variant="contained"
+      sx={{
+        backgroundColor: "#c319d2",
+        color: "#fff",
+        fontSize: "18px",
+        borderRadius: 2,
+        textTransform: "none",
+        px: 4,
+        py: 1.2,
+        "&:hover": {
+          backgroundColor: "#a315b0",
+        },
+      }}
+    >
+      Contact Me
+    </Button>
+  </Link>
+
+  {/* Download CV */}
+  <Button
+    variant="outlined"
+    color="primary"
+    size="large"
+    startIcon={<DownloadIcon />}
+    href={cvFile}
+    download
+    sx={{
+      backgroundColor: "rgb(3,3,3)",
+      fontSize: "18px",
+      borderRadius: 2,
+      textTransform: "none",
+      px: 4,
+      py: 1.2,
+      borderWidth: "2px",
+      "&:hover": {
+      backgroundColor: "#c319d2",
+      color: "#fff",
+      borderColor: "#c319d2",
+      transform: "translateY(-3px)", // 👈 حركة خفيفة لفوق
+      boxShadow: "0 8px 20px rgba(195, 25, 210, 0.4)", // 👈 ظل جميل
+    },
+    }}
+  >
+    Download CV
+  </Button>
+</Box>
       </Box>
 
       {/* Animations */}

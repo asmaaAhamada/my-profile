@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import r1 from "../../../assets/image/image.png";
 import DownloadIcon from "@mui/icons-material/Download";
 
-import cvFile from "../../../assets/todo/FRONT-END.pdf"
+import cvFile from "../../../assets/todo/FRONT_END .pdf"
 /* Typing Effect */
 const TypingText = ({
   text,

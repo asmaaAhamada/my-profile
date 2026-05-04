@@ -166,6 +166,7 @@ export default function HelloPage() {
     sx={{
       backgroundColor: "rgb(3,3,3)",
       fontSize: "18px",
+      boxShadow: "0 8px 20px rgba(195, 25, 210, 0.4)",
       borderRadius: 2,
       textTransform: "none",
       px: 4,

@@ -20,9 +20,23 @@ import board7 from "../assets/ss/photo_2026-01-09_03-45-17.jpg";
 
 
 
+import r1 from "../assets/store/photo_2026-05-04_23-07-04.jpg";
+import r2 from "../assets/store/photo_2026-05-04_23-07-11.jpg";
+import r3 from "../assets/store/photo_2026-05-04_23-07-16.jpg";
+import r4 from "../assets/store/photo_2026-05-04_23-07-22.jpg";
+import r5 from "../assets/store/photo_2026-05-04_23-07-27.jpg";
+import r6 from "../assets/store/photo_2026-05-04_23-07-31.jpg";
+import r7 from "../assets/store/photo_2026-05-04_23-07-36.jpg";
 
 
-
+import o1 from "../assets/ammrha/photo_2026-05-04_23-32-35.jpg";
+import o2 from "../assets/ammrha/photo_2026-05-04_23-32-14.jpg";
+import o3 from "../assets/ammrha/photo_2026-05-04_23-32-09.jpg";
+import o4 from "../assets/ammrha/photo_2026-05-04_23-32-04.jpg";
+import o5 from "../assets/ammrha/photo_2026-05-04_23-31-59.jpg";
+import o6 from "../assets/ammrha/photo_2026-05-04_23-31-54.jpg";
+import o61 from "../assets/ammrha/photo_2026-05-04_23-31-49.jpg";
+import o62 from "../assets/ammrha/photo_2026-05-04_23-31-42.jpg";
 
 
 
@@ -87,6 +101,23 @@ import weather1 from "../assets/halab/photo_2026-01-09_03-50-43.jpg";
 import weather2 from "../assets/halab/photo_2026-01-09_03-50-43.jpg";
 
 export const projectsData = [
+   {
+    id: "landing-Page",
+    title: "ammrha",
+            demoLink: "https://asmaaahamada.github.io/Ammrha-Landing-page",
+
+   des: `LandingPage for Ammrha Company to Present its vision, goals, and ways to contact it`,
+    images: [o1, o2, o3,o4 ,o5,  o6,o61,o62],
+    features: [
+      "Responsive Desighn",
+      "Animation and fraindly page",
+      "convert UI &UX"
+,      
+      
+      "Light and dark theme support for enhanced user comfort",
+      
+    ],
+  },
   {
     id: "syrian-board",
             demoLink: "https://drive.google.com/drive/folders/1Qme0Xx_f5GNUk7fbD6sPGrnlXwg67Cv6?usp=sharing",
@@ -215,4 +246,23 @@ Multilingual support (English/Arabic) with instant switching and fully localized
       "Weather icons using Material UI Icons (e.g., WbCloudyIcon) for intuitive representation",
     ],
   },
+   {
+    id: "Store-Task",
+    title: "store",
+            demoLink: "https://asmaaahamada.github.io/storTest",
+
+   des: `A mini task for store to display product with login and drop and drag and paginition.`,
+    images: [r1, r2, r3,r4 ,r5,  r5,r6,r7],
+    features: [
+      "Secure authentication with email/password ",
+      "Ascending and descending order",
+      "view details"
+,      "drop & drage",
+      "Integrated GETapi  fetch product ",
+      
+      "Light and dark theme support for enhanced user comfort",
+      
+    ],
+  },
+ 
 ];

@@ -3,6 +3,7 @@ import { Box, Typography, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import r1 from "../../../assets/image/image.png";
 import DownloadIcon from "@mui/icons-material/Download";
+import { motion } from "framer-motion"; // تأكد من المسار الصحيح للمكتبة
 
 import cvFile from "../../../assets/todo/FRONT_END .pdf"
 /* Typing Effect */
@@ -40,6 +41,7 @@ const TypingText = ({
 
   return <span>{displayedText}</span>;
 };
+    const MotionButton = motion(Button);
 
 export default function HelloPage() {
   return (
@@ -136,7 +138,10 @@ export default function HelloPage() {
 >
   {/* Contact Button */}
   <Link to="/conect" style={{ textDecoration: "none" }}>
-    <Button
+    <MotionButton
+        initial={{ opacity: 0, y: -20 }}
+  animate={{ opacity: 1, y: 7}}
+  transition={{ duration: 4 }}
       variant="contained"
       sx={{
         backgroundColor: "#c319d2",
@@ -152,7 +157,7 @@ export default function HelloPage() {
       }}
     >
       Contact Me
-    </Button>
+    </MotionButton>
   </Link>
 
   {/* Download CV */}

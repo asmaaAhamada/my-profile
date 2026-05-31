@@ -1,26 +1,47 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import EmojiObjectsIcon from "@mui/icons-material/EmojiObjects";
-import { useInViewAnimation } from "../../useInViewAnimation";
+import { motion } from "framer-motion";
 
 export default function AboutPage() {
   const theme = useTheme();
-  const [ref, inView] = useInViewAnimation({ threshold: 0.2 });
+
+  // إعدادات حركة النص التتابعية (Stagger) للعنوان
+  const titleContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.03, delayChildren: 0.2 }
+    }
+  };
+
+  const letterVariant = {
+    hidden: { opacity: 0, y: 10, filter: "blur(5px)" },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      filter: "blur(0px)",
+      transition: { type: "spring", stiffness: 100 } 
+    }
+  };
+
+  const titleText = "Why choose me as your Web Developer?";
 
   return (
     <Box
-      ref={ref}
+      component={motion.div}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 1 }}
       sx={{
-        opacity: inView ? 1 : 0,
-        transform: inView ? "translateY(0px)" : "translateY(50px)",
-        transition: "all 0.8s ease-out",
-
-        py: 8,
+        py: 10,
         px: 2,
         textAlign: "center",
-
         background:
-          "radial-gradient(circle at top, rgba(201,17,238,0.15), transparent 60%), #000",
+          "radial-gradient(circle at top, rgba(201,17,238,0.12), transparent 65%), #000",
         color: "#fff",
+        position: "relative",
+        overflow: "hidden"
       }}
     >
       {/* TITLE */}
@@ -29,57 +50,94 @@ export default function AboutPage() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          mb: 2,
+          mb: 3,
           position: "relative",
         }}
       >
-        {/* glow background */}
+        {/* Glow الخلفي المحسن */}
         <Box
+          component={motion.div}
+          animate={{
+            scale: [1, 1.1, 1],
+            opacity: [0.35, 0.5, 0.35]
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
           sx={{
             position: "absolute",
-            width: "260px",
-            height: "90px",
+            width: "320px",
+            height: "120px",
             background:
-              "radial-gradient(circle, rgba(201,17,238,0.35), transparent)",
-            filter: "blur(25px)",
+              "radial-gradient(circle, rgba(201,17,238,0.4), transparent 70%)",
+            filter: "blur(30px)",
             zIndex: 0,
           }}
         />
 
-        <EmojiObjectsIcon
-          fontSize="large"
-          sx={{
-            mr: 1,
-            color: "#c911ee",
-            filter: "drop-shadow(0 0 10px rgba(201,17,238,0.8))",
-            zIndex: 1,
-          }}
-        />
+        {/* أيقونة اللمبة مع أنيميشن نبض خفيف */}
+        <Box
+          component={motion.div}
+          animate={{ y: [0, -6, 0] }}
+          transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+          sx={{ display: "flex", alignItems: "center", zIndex: 1 }}
+        >
+          <EmojiObjectsIcon
+            fontSize="large"
+            sx={{
+              mr: 1.5,
+              color: "#c911ee",
+              filter: "drop-shadow(0 0 12px rgba(201,17,238,0.9))",
+            }}
+          />
+        </Box>
 
+        {/* عنوان يتفكك لأحرف ويظهر بتأثير سينمائي مرن */}
         <Typography
+          component={motion.span}
+          variants={titleContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
           variant="h5"
-          fontWeight="bold"
+          fontWeight="800"
           sx={{
             zIndex: 1,
-            background: "linear-gradient(90deg, #ffffff, #c911ee)",
+            display: "inline-block",
+            background: "linear-gradient(90deg, #ffffff 30%, #c911ee 100%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             letterSpacing: "1px",
           }}
         >
-          Why choose me as your Web Developer?
+          {titleText.split("").map((char, index) => (
+            <motion.span 
+              key={index} 
+              variants={letterVariant}
+              style={{ display: "inline-block", whiteSpace: char === " " ? "pre" : "normal" }}
+            >
+              {char}
+            </motion.span>
+          ))}
         </Typography>
       </Box>
 
-      {/* TEXT */}
+      {/* TEXT & LINK */}
       <Typography
+        component={motion.p}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.6, duration: 0.8 }}
         sx={{
           color: "#bdbdbd",
-          maxWidth: 650,
+          maxWidth: 680,
           mx: "auto",
-          mt: 3,
-          lineHeight: 1.8,
-          fontSize: "16px",
+          lineHeight: 1.9,
+          fontSize: "17px",
+          letterSpacing: "0.3px"
         }}
         variant="body1"
       >
@@ -89,16 +147,28 @@ export default function AboutPage() {
         <br />
         <br />
         Check out my{" "}
-        <a
+        <Box
+          component={motion.a}
           href="https://github.com/asmaaAhamada"
-          style={{
+          target="_blank"
+          rel="noopener noreferrer"
+          whileHover={{ 
+            scale: 1.1,
+            color: "#e256ff",
+            textShadow: "0 0 15px rgba(201,17,238,0.9)"
+          }}
+          transition={{ type: "spring", stiffness: 300, damping: 10 }}
+          sx={{
+            display: "inline-block",
             color: "#c911ee",
             textDecoration: "none",
             fontWeight: "bold",
+            borderBottom: "1px dashed rgba(201,17,238,0.4)",
+            pb: "2px",
           }}
         >
-          GetHUB
-        </a>{" "}
+          GitHub
+        </Box>{" "}
         to see my work.
       </Typography>
     </Box>

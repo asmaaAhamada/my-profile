@@ -7,7 +7,6 @@ import {
   IconButton,
   Typography,
   Snackbar,
-  useTheme,
 } from "@mui/material";
 
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
@@ -17,47 +16,19 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import EmailIcon from "@mui/icons-material/Email";
 
+// استيراد الفريمر موشن
+import { motion } from "framer-motion";
+
 export default function ConectPage() {
-  const theme = useTheme();
   const [open, setOpen] = useState(false);
 
   const contacts = [
-    {
-      icon: <WhatsAppIcon />,
-      label: "WhatsApp",
-      link: "https://wa.me/0991401566",
-      color: "#25D366",
-    },
-    {
-      icon: <TelegramIcon />,
-      label: "Telegram",
-      link: "https://t.me/Asmaa_alhmada",
-      color: "#229ED9",
-    },
-    {
-      icon: <LinkedInIcon />,
-      label: "LinkedIn",
-      link: "https://www.linkedin.com/in/asmaa-alhamada-a45127363/?originalSubdomain=sy",
-      color: "#0A66C2",
-    },
-    {
-      icon: <FacebookIcon />,
-      label: "Facebook",
-      link: "https://www.facebook.com/asmaa.alhamada.2025",
-      color: "#1877F2",
-    },
-    {
-      icon: <InstagramIcon />,
-      label: "Instagram",
-      link: "https://www.instagram.com/asmaaalhamada4/",
-      color: "#E4405F",
-    },
-    {
-      icon: <EmailIcon />,
-      label: "Email",
-      email: "asmaalhamada4@gmail.com",
-      color: theme.palette.primary.main,
-    },
+    { icon: <WhatsAppIcon />, label: "WhatsApp", link: "https://wa.me/0991401566", color: "#25D366" },
+    { icon: <TelegramIcon />, label: "Telegram", link: "https://t.me/Asmaa_alhmada", color: "#229ED9" },
+    { icon: <LinkedInIcon />, label: "LinkedIn", link: "https://www.linkedin.com/in/asmaa-alhamada-a45127363/", color: "#0A66C2" },
+    { icon: <FacebookIcon />, label: "Facebook", link: "https://www.facebook.com/asmaa.alhamada.2025", color: "#1877F2" },
+    { icon: <InstagramIcon />, label: "Instagram", link: "https://www.instagram.com/asmaaalhamada4/", color: "#E4405F" },
+    { icon: <EmailIcon />, label: "Email", email: "asmaalhamada4@gmail.com", color: "#BB001B" },
   ];
 
   const handleEmailCopy = (email) => {
@@ -65,32 +36,79 @@ export default function ConectPage() {
     setOpen(true);
   };
 
+  // إعدادات الـ Stagger (ظهور الأيقونات ورا بعض)
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { type: "spring", stiffness: 100, damping: 10 } 
+    },
+  };
+
   return (
     <>
       <Card
+        component={motion.div}
+        initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
         sx={{
-          mt: 2,
+          mt: 4,
           backgroundColor: "#121212",
-          borderRadius: "20px",
+          borderRadius: "24px",
+          border: "1px solid rgba(255,255,255,0.05)",
+          overflow: "visible", // للسماح بتوهج الأيقونات بالخروج من الحدود
+          boxShadow: "0 20px 40px rgba(0,0,0,0.4)",
         }}
       >
-        <CardContent>
-          <Typography variant="h4" fontWeight="600" mb={1} color="purple">
-            Contact Me
-          </Typography>
+        <CardContent sx={{ p: 4 }}>
+          <Box textAlign="center" mb={4}>
+            <Typography variant="h4" fontWeight="700" color="#c319d2" gutterBottom>
+              Contact Me
+            </Typography>
+            <Typography variant="h6" sx={{ color: "rgba(255,255,255,0.7)", fontWeight: 400 }}>
+              Let’s connect and build something great 🚀
+            </Typography>
+          </Box>
 
-          <Typography
-            variant="h6"
-            sx={{ color: "#f7f1f1" }}
-            mb={3}
+          <Grid 
+            container 
+            spacing={4} 
+            component={motion.div}
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            justifyContent="center"
           >
-            Let’s connect and build something great 
-          </Typography>
-
-          <Grid container spacing={3}>
             {contacts.map((item, index) => (
-              <Grid item xs={6} sm={4} md={2} key={item.label}>
+              <Grid item xs={6} sm={4} md={2} key={item.label} textAlign="center">
                 <Box
+                  component={motion.div}
+                  variants={itemVariants}
+                  // تأثير الطفو المستمر (Floating)
+                  animate={{
+                    y: [0, -10, 0],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: index * 0.2, // كل أيقونة تطفو بتوقيت مختلف
+                  }}
+                  whileHover={{ 
+                    scale: 1.2,
+                    filter: `drop-shadow(0px 0px 15px ${item.color})`, // توهج بلون الأيقونة
+                  }}
                   onClick={() =>
                     item.email
                       ? handleEmailCopy(item.email)
@@ -101,44 +119,43 @@ export default function ConectPage() {
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
-                    gap: 1,
-                    p: 2,
-                    borderRadius: "18px",
-                    color: "white",
-
-                    // ✨ دخول تدريجي
-                    opacity: 0,
-                    transform: "translateY(25px)",
-                    animation: "fadeUp 0.6s ease forwards",
-                    animationDelay: `${index * 0.1}s`,
-
-                    transition: "0.3s",
-
-                   
+                    gap: 1.5,
                   }}
                 >
                   <IconButton
                     sx={{
-                      bgcolor: item.color,
-                      color: "#fff",
-                      width: 56,
-                      height: 56,
-                      transition: "0.3s",
-
-                     
+                      bgcolor: "rgba(255,255,255,0.03)", // خلفية شفافة هادئة
+                      border: `2px solid ${item.color}`,
+                      color: item.color,
+                      width: 65,
+                      height: 65,
+                      transition: "0.4s",
+                      "&:hover": {
+                        bgcolor: item.color,
+                        color: "#fff",
+                      },
                     }}
                   >
-                    {item.icon}
+                    {React.cloneElement(item.icon, { sx: { fontSize: 32 } })}
                   </IconButton>
 
-                  <Typography variant="body2" fontWeight="500">
+                  <Typography 
+                    variant="body2" 
+                    fontWeight="600" 
+                    sx={{ color: "white", mt: 1, letterSpacing: 0.5 }}
+                  >
                     {item.label}
                   </Typography>
 
                   {item.email && (
                     <Typography
                       variant="caption"
-                      sx={{ opacity: 0.7, fontSize: "11px" }}
+                      sx={{ 
+                        display: { xs: 'none', md: 'block' },
+                        opacity: 0.5, 
+                        fontSize: "10px", 
+                        color: "#fff" 
+                      }}
                     >
                       {item.email}
                     </Typography>
@@ -155,21 +172,8 @@ export default function ConectPage() {
         autoHideDuration={2000}
         onClose={() => setOpen(false)}
         message="Email copied to clipboard 📋"
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       />
-
-      {/* animation */}
-      <style>{`
-        @keyframes fadeUp {
-          from {
-            opacity: 0;
-            transform: translateY(25px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
     </>
   );
 }
